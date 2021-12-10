@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hiring index{% endblock %}
+
+{% block body %}
+    <h1>Hiring index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hiring in hirings %}
+            <tr>
+                <td>{{ hiring.id }}</td>
+                <td>{{ hiring.name }}</td>
+                <td>
+                    <a href="{{ path('hiring_show', {'id': hiring.id}) }}" class="btn btn-sm btn-secondary">show</a>
+                    <a href="{{ path('hiring_edit', {'id': hiring.id}) }}" class="btn btn-sm btn-primary">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('hiring_new') }}" class="btn btn-sm btn-success">Create new</a>
+{% endblock %}
